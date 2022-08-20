@@ -1,8 +1,13 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { UsersRepository } from './repository/users.repository';
-import { User } from './schemas/user.schema';
-import { hashSync } from 'bcrypt';
+
 import { CreateUserDto } from 'src/auth/dto/create-user.dto';
+import { User } from './entities/users.entity';
+import { UpdateUserDto } from './dto/update-user.dto';
 @Injectable()
 export class UsersService {
   constructor(private readonly usersRepository: UsersRepository) {}
@@ -16,10 +21,16 @@ export class UsersService {
       throw new BadRequestException(`O Email ${email} já está sendo utilizado`);
     }
 
-    const hashedPass = hashSync(createUserDto.password, 10);
-
-    createUserDto.password = hashedPass;
-
     return await this.usersRepository.create(createUserDto);
+  }
+
+  async update(updateUserDto: UpdateUserDto, _id: string): Promise<void> {
+    const userExists = await this.usersRepository.findById(_id);
+
+    if (!userExists) {
+      throw new NotFoundException(`O Usuário com id ${_id} não foi encontrado`);
+    }
+
+    await this.usersRepository.update(updateUserDto, _id);
   }
 }

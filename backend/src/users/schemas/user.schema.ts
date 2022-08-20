@@ -1,23 +1,45 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import * as mongoose from 'mongoose';
+import { hash } from 'bcrypt';
+import { ConfigService } from '@nestjs/config';
+const configService = new ConfigService();
 
-export type UserDocument = User & Document;
+export const UserSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true, nullable: false },
+    lastname: { type: String, required: false, nullable: true },
+    email: { type: String, unique: true, required: true, nullable: false },
+    password: { type: String, required: true, nullable: false },
+    avatar: { type: String, required: false, nullable: true },
+  },
+  {
+    timestamps: true,
+    collection: 'users',
+  },
+);
 
-@Schema()
-export class User {
-  @Prop({ type: String, required: true })
-  name: string;
+UserSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) return next();
 
-  @Prop({ type: String, required: false })
-  lastname?: string;
+  const passwordHash = await hash(this.password, 10);
 
-  @Prop({ type: String, required: true, unique: true })
-  email: string;
+  this.password = passwordHash;
+  next();
+});
+// export class User {
+//   @Prop({ type: String, required: true })
+//   name: string;
 
-  @Prop({ type: String, required: true })
-  password: string;
+//   @Prop({ type: String, required: false })
+//   lastname?: string;
 
-  @Prop({ type: String, required: false })
-  avatar?: string;
-}
+//   @Prop({ type: String, required: true, unique: true })
+//   email: string;
 
-export const UserSchema = SchemaFactory.createForClass(User);
+//   @Prop({ type: String, required: true })
+//   password: string;
+
+//   @Prop({ type: String, required: false })
+//   avatar?: string;
+// }
+
+// export const UserSchema = SchemaFactory.createForClass(User);

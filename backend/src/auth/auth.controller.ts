@@ -6,7 +6,8 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { User } from 'src/users/schemas/user.schema';
+import { User } from 'src/users/entities/users.entity';
+
 import { UsersService } from 'src/users/users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 

@@ -1,7 +1,5 @@
 import * as mongoose from 'mongoose';
 import { hash } from 'bcrypt';
-import { ConfigService } from '@nestjs/config';
-const configService = new ConfigService();
 
 export const UserSchema = new mongoose.Schema(
   {

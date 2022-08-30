@@ -16,7 +16,7 @@ import * as React from "react";
 const theme = createTheme();
 
 async function loginUser(credentials) {
-  return fetch("http://localhost:8080/login", {
+  return fetch("http://localhost:3000/api/v1/auth/signin", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

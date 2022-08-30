@@ -3,9 +3,11 @@ import {
   Controller,
   Param,
   Put,
+  UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
 import { ValidacaoParametrosPipe } from 'src/lib/pipes/validacao-parametros.pipe';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -18,6 +20,7 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Put('/:_id')
+  @UseGuards(AuthGuard('jwt'))
   @UsePipes(ValidationPipe)
   async update(
     @Body() updateUserDto: UpdateUserDto,

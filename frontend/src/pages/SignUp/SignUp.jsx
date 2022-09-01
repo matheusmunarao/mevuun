@@ -16,14 +16,35 @@ import { Copyright } from "../../components/Copyright/Copyright";
 
 const theme = createTheme();
 
+const createUser = async (userInfo) => {
+  return fetch("http://localhost:3000/api/v1/auth/signup", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userInfo),
+  }).then((data) => {
+    return data.status;
+  });
+};
+
 export const SignUp = () => {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    const signup = await createUser({
+      name: data.get("firstName"),
+      lastname: data.get("lastName"),
       email: data.get("email"),
       password: data.get("password"),
     });
+
+    if (signup === 201) {
+      window.alert("Cadastrado com sucesso!");
+      window.location.href = "/login";
+    } else {
+      window.alert("Informações Incorretas! Preencha novamente.");
+    }
   };
 
   return (
@@ -58,7 +79,7 @@ export const SignUp = () => {
                   required
                   fullWidth
                   id="firstName"
-                  label="First Name"
+                  label="Nome"
                   autoFocus
                 />
               </Grid>
@@ -67,7 +88,7 @@ export const SignUp = () => {
                   required
                   fullWidth
                   id="lastName"
-                  label="Last Name"
+                  label="Sobrenome"
                   name="lastName"
                   autoComplete="family-name"
                 />
@@ -77,7 +98,7 @@ export const SignUp = () => {
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  label="Email"
                   name="email"
                   autoComplete="email"
                 />
@@ -87,7 +108,7 @@ export const SignUp = () => {
                   required
                   fullWidth
                   name="password"
-                  label="Password"
+                  label="Senha"
                   type="password"
                   id="password"
                   autoComplete="new-password"
@@ -100,12 +121,12 @@ export const SignUp = () => {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              CRIAR CONTA
             </Button>
             <Grid container justifyContent="center">
               <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
+                <Link href="/login" variant="body2">
+                  Já tem uma conta? Faça login!
                 </Link>
               </Grid>
             </Grid>

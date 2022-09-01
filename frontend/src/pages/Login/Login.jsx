@@ -26,7 +26,9 @@ const loginUser = async (credentials) => {
     body: JSON.stringify(credentials),
   })
     .then((data) => data.json())
-    .then((response) => console.log(response));
+    .then((response) => {
+      return response;
+    });
 };
 
 export const Login = () => {
@@ -40,6 +42,12 @@ export const Login = () => {
       email: data.get("email"),
       password: data.get("password"),
     });
+
+    if (token) {
+      window.location.href = "/home";
+    } else {
+      window.alert("Usuário inválido");
+    }
   };
 
   return (
@@ -58,7 +66,7 @@ export const Login = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Login into Mevuun
+            Acesse a Mevuun
           </Typography>
           <Box
             component="form"
@@ -88,27 +96,23 @@ export const Login = () => {
               autoComplete="current-password"
               onChange={(e) => setPassword(e.target.value)}
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              ACESSAR
             </Button>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  Forgot password?
+                  Esqueceu sua senha?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link href="/signup" variant="body2">
+                  {"Não possui uma conta? Crie uma!"}
                 </Link>
               </Grid>
             </Grid>

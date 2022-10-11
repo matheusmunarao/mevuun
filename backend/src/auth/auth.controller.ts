@@ -10,7 +10,6 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { ResponseTypeDto } from 'src/lib/dto/general/response-type.dto';
-import { User } from 'src/users/entities/users.entity';
 
 import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-user.dto';

@@ -15,10 +15,10 @@ export class UsersRepository {
       .exec();
   }
 
-  async create(createUserDto: CreateUserDto): Promise<User> {
+  async create(createUserDto: CreateUserDto): Promise<void> {
     const newUser = new this.userModel(createUserDto);
 
-    return await newUser.save();
+    await newUser.save();
   }
 
   async findByEmail(email: string): Promise<User> {

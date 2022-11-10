@@ -8,7 +8,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { ValidacaoParametrosPipe } from 'src/lib/pipes/validacao-parametros.pipe';
 import { UpdateUserDto } from './dto/update-user.dto';
 
@@ -22,6 +22,9 @@ export class UsersController {
   @Put('/:_id')
   @UseGuards(AuthGuard('jwt'))
   @UsePipes(ValidationPipe)
+  @ApiBody({
+    type: UpdateUserDto,
+  })
   async update(
     @Body() updateUserDto: UpdateUserDto,
     @Param('_id', ValidacaoParametrosPipe) _id: string,

@@ -2,7 +2,7 @@ import React from "react";
 
 export const Menu = () => {
   return (
-    <div>
+    <div className="fixed top-0 flex">
       <a href="/home">Logo</a>
       <nav>
         <ul>

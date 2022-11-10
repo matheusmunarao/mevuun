@@ -12,7 +12,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-import { useState } from "react";
 import { Copyright } from "../../components/Copyright/Copyright";
 
 const theme = createTheme();
@@ -32,9 +31,6 @@ const loginUser = async (credentials) => {
 };
 
 export const Login = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);

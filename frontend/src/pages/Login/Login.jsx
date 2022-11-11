@@ -1,48 +1,49 @@
-import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Checkbox from "@mui/material/Checkbox";
 import Container from "@mui/material/Container";
+import CssBaseline from "@mui/material/CssBaseline";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Grid from "@mui/material/Grid";
+import Link from "@mui/material/Link";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link
-        color="inherit"
-        target="_blank"
-        href="https:/github.com/matheusmunarao/mevuun"
-      >
-        Mevuun
-      </Link>
-    </Typography>
-  );
-}
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import * as React from "react";
+import { Copyright } from "../../components/Copyright/Copyright";
 
 const theme = createTheme();
 
-export default function Login() {
-  const handleSubmit = (event) => {
+const loginUser = async (credentials) => {
+  return fetch("http://localhost:3000/api/v1/auth/signin", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(credentials),
+  })
+    .then((data) => data.json())
+    .then((response) => {
+      return response;
+    });
+};
+
+export const Login = () => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    const token = await loginUser({
       email: data.get("email"),
       password: data.get("password"),
     });
+
+    if (token) {
+      window.location.href = "/home";
+    } else {
+      window.alert("Usuário inválido");
+    }
   };
 
   return (
@@ -61,7 +62,7 @@ export default function Login() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Login into Mevuun
+            Acesse a Mevuun
           </Typography>
           <Box
             component="form"
@@ -78,6 +79,7 @@ export default function Login() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -88,10 +90,7 @@ export default function Login() {
               type="password"
               id="password"
               autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              onChange={(e) => setPassword(e.target.value)}
             />
             <Button
               type="submit"
@@ -99,17 +98,17 @@ export default function Login() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              ACESSAR
             </Button>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  Forgot password?
+                  Esqueceu sua senha?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link href="/signup" variant="body2">
+                  {"Não possui uma conta? Crie uma!"}
                 </Link>
               </Grid>
             </Grid>
@@ -119,4 +118,4 @@ export default function Login() {
       </Container>
     </ThemeProvider>
   );
-}
+};

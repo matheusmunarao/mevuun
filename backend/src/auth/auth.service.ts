@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from 'src/users/users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { compareSync } from 'bcrypt';
+import { ResponseTypeDto } from 'src/lib/dto/general/response-type.dto';
 
 @Injectable()
 export class AuthService {
@@ -11,8 +12,13 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async signup(createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+  async signup(createUserDto: CreateUserDto): Promise<ResponseTypeDto> {
+    await this.userService.create(createUserDto);
+
+    return {
+      statusCode: HttpStatus.CREATED,
+      message: 'User has been Created',
+    };
   }
 
   async login(user) {

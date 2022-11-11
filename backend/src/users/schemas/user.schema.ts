@@ -23,7 +23,6 @@ UserSchema.pre('save', async function (next) {
   this.password = passwordHash;
   next();
 });
-// export class User {
 //   @Prop({ type: String, required: true })
 //   name: string;
 

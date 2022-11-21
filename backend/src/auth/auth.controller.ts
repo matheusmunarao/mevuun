@@ -30,6 +30,7 @@ export class AuthController {
   }
 
   @UseGuards(AuthGuard('local'))
+  @ApiBody({ type: [LoginDTO] })
   @Post('signin')
   @ApiBody({
     type: LoginDTO,

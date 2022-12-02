@@ -28,7 +28,10 @@ export class UsersRepository {
   }
 
   async findById(_id: string): Promise<User> {
-    const user = await this.userModel.findOne({ _id: _id }).exec();
+    const user = await this.userModel
+      .findOne({ _id: _id })
+      .select('_id name lastname email createdAt updatedAt')
+      .exec();
 
     return user;
   }

@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -74,5 +75,13 @@ export class GamesController {
     @Param('_id', ValidacaoParametrosPipe) _id: string,
   ): Promise<ResponseTypeDto> {
     return await this.gamesService.unlikeGame(_id);
+  }
+
+  @Delete('/:_id')
+  @UseGuards(AuthGuard('jwt'))
+  async delete(
+    @Param('_id', ValidacaoParametrosPipe) _id: string,
+  ): Promise<ResponseTypeDto> {
+    return await this.gamesService.deleteGame(_id);
   }
 }

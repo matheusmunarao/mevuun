@@ -42,4 +42,8 @@ export class GamesRepository {
       .findOneAndUpdate({ _id: _id }, { $set: { liked: like } })
       .exec();
   }
+
+  async delete(_id: string): Promise<void> {
+    this.gameModel.findOneAndDelete({ _id: _id }).exec();
+  }
 }

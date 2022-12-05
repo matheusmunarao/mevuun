@@ -45,9 +45,9 @@ export class GamesService {
     updateGameDto: UpdateGameDto,
     _id: string,
   ): Promise<ResponseTypeDto> {
-    const userExists = await this.gamesRepository.findById(_id);
+    const gameExists = await this.gamesRepository.findById(_id);
 
-    if (!userExists) {
+    if (!gameExists) {
       throw new NotFoundException(`O Jogo com id ${_id} não foi encontrado`);
     }
 
@@ -86,6 +86,21 @@ export class GamesService {
     return {
       statusCode: HttpStatus.OK,
       message: 'Game has been Unliked',
+    };
+  }
+
+  async deleteGame(_id: string): Promise<ResponseTypeDto> {
+    const game = await this.gamesRepository.findById(_id);
+
+    if (!game) {
+      throw new NotFoundException(`O Jogo com id ${_id} não foi encontrado`);
+    }
+
+    await this.gamesRepository.delete(_id);
+
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'Game has been deleted',
     };
   }
 }

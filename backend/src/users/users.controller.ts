@@ -36,9 +36,6 @@ export class UsersController {
 
   @Get('/:_id')
   @UsePipes(ValidationPipe)
-  @ApiBody({
-    type: UpdateUserDto,
-  })
   async getUser(
     @Param('_id', ValidacaoParametrosPipe) _id: string,
   ): Promise<User> {

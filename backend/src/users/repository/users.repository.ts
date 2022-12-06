@@ -15,10 +15,10 @@ export class UsersRepository {
       .exec();
   }
 
-  async create(createUserDto: CreateUserDto): Promise<User> {
+  async create(createUserDto: CreateUserDto): Promise<void> {
     const newUser = new this.userModel(createUserDto);
 
-    return await newUser.save();
+    await newUser.save();
   }
 
   async findByEmail(email: string): Promise<User> {
@@ -28,7 +28,10 @@ export class UsersRepository {
   }
 
   async findById(_id: string): Promise<User> {
-    const user = await this.userModel.findOne({ _id: _id }).exec();
+    const user = await this.userModel
+      .findOne({ _id: _id })
+      .select('_id name lastname email createdAt updatedAt')
+      .exec();
 
     return user;
   }

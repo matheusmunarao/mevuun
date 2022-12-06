@@ -1,0 +1,25 @@
+.menu-div {
+  padding: 10px 50px;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  background-color: #120390;
+  width: 100%;
+  color: #fff;
+}
+
+.menu-ul {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.menu-ul a {
+  display: flex;
+  gap: 5px;
+}
+
+.menu-ul img {
+  width: 24px;
+}

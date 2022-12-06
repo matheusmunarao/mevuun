@@ -1,7 +1,5 @@
 import * as mongoose from 'mongoose';
 import { hash } from 'bcrypt';
-import { ConfigService } from '@nestjs/config';
-const configService = new ConfigService();
 
 export const UserSchema = new mongoose.Schema(
   {
@@ -25,7 +23,6 @@ UserSchema.pre('save', async function (next) {
   this.password = passwordHash;
   next();
 });
-// export class User {
 //   @Prop({ type: String, required: true })
 //   name: string;
 

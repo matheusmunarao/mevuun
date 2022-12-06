@@ -2,22 +2,40 @@ import {
   Body,
   Controller,
   Post,
+  Req,
+  UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
-import { User } from 'src/users/entities/users.entity';
+import { AuthGuard } from '@nestjs/passport';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { ResponseTypeDto } from 'src/lib/dto/general/response-type.dto';
 
-import { UsersService } from 'src/users/users.service';
+import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { LoginDTO } from './dto/login-user.dto';
 
 @ApiTags('auth')
 @Controller('api/v1/auth')
 export class AuthController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly authService: AuthService) {}
+
   @Post('/signup')
   @UsePipes(ValidationPipe)
-  async create(@Body() createUserDto: CreateUserDto): Promise<User> {
-    return await this.usersService.create(createUserDto);
+  @ApiBody({
+    type: CreateUserDto,
+  })
+  async create(@Body() createUserDto: CreateUserDto): Promise<ResponseTypeDto> {
+    return await this.authService.signup(createUserDto);
+  }
+
+  @UseGuards(AuthGuard('local'))
+  @ApiBody({ type: [LoginDTO] })
+  @Post('signin')
+  @ApiBody({
+    type: LoginDTO,
+  })
+  async login(@Req() req): Promise<{ token: string; _id: string }> {
+    return await this.authService.login(req.user);
   }
 }

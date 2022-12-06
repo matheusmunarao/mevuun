@@ -35,9 +35,6 @@ export class GamesController {
 
   @Get()
   @UseGuards(AuthGuard('jwt'))
-  @ApiBody({
-    type: CreateGameDto,
-  })
   async games(): Promise<Game[]> {
     return await this.gamesService.getGames();
   }

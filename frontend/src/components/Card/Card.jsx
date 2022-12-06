@@ -1,18 +1,17 @@
 import React from "react";
+import imagem from "../../assets/download.jpg";
+import "./index.css";
 
-const Card = (props) => {
+export const Card = (props) => {
   return (
-    <div>
-      <div className="container-image">
-        <img src="" alt="" />
-        <button>Comprar</button>
+    <div className="card-container">
+      <div className="card-image">
+        <img src={imagem} alt="" />
+        <button>❤️</button>
       </div>
-      <div className="container-content">
+      <div className="card-content">
         <h3>{props.game}</h3>
-        <p>{props.description}</p>
       </div>
     </div>
   );
 };
-
-export default Card;

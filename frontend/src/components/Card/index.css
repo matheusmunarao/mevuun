@@ -1,0 +1,27 @@
+.card-container {
+  width: 20%;
+  border: 1px solid #000;
+  border-radius: 4px;
+}
+
+.card-image {
+  position: relative;
+}
+
+.card-image > img {
+  width: 100%;
+}
+
+.card-image > button {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  border-radius: 100%;
+  background-color: #fff;
+  width: 25px;
+  color: #fff;
+}
+
+.card-content {
+  padding: 10px;
+}

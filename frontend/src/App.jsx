@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Account } from "./pages/Account/Account";
+import { Favorites } from "./pages/Favorites/Favorites";
 import { Home } from "./pages/Home/Home";
-import { HomeUser } from "./pages/HomeUser/HomeUser";
 import { Login } from "./pages/Login/Login";
 import { SignUp } from "./pages/SignUp/SignUp";
 
@@ -8,10 +9,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<Home />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="login" element={<Login />} />
-        <Route path="home" element={<HomeUser />} />
+        <Route index element={<Home />} />
+        <Route path="meu-perfil" element={<Account />} />
+        <Route path="favoritos" element={<Favorites />} />
       </Routes>
     </BrowserRouter>
   );

@@ -35,7 +35,7 @@ export class AuthController {
   @ApiBody({
     type: LoginDTO,
   })
-  async login(@Req() req): Promise<{ token: string }> {
+  async login(@Req() req): Promise<{ token: string; _id: string }> {
     return await this.authService.login(req.user);
   }
 }

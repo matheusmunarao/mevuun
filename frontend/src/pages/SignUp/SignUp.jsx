@@ -49,11 +49,20 @@ export const SignUp = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container
+        component="main"
+        maxWidth="sm"
+        sx={{
+          minHeight: "calc(100vh - 16px)",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
+      >
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginBlock: "auto",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -125,14 +134,14 @@ export const SignUp = () => {
             </Button>
             <Grid container justifyContent="center">
               <Grid item>
-                <Link href="/login" variant="body2">
+                <Link href="/" variant="body2">
                   Já tem uma conta? Faça login!
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
+        <Copyright sx={{ mt: 2 }} />
       </Container>
     </ThemeProvider>
   );

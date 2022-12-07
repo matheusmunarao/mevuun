@@ -52,14 +52,31 @@ export const Login = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
+      <Container
+        component="main"
+        maxWidth="sm"
+        sx={{
+          minHeight: "calc(100vh - 16px)",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        />
         <Box
           sx={{
             marginTop: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            minHeight: "100%",
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
@@ -104,12 +121,8 @@ export const Login = () => {
             >
               ACESSAR
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Esqueceu sua senha?
-                </Link>
-              </Grid>
+
+            <Grid container justifyContent="center">
               <Grid item>
                 <Link href="/signup" variant="body2">
                   {"Não possui uma conta? Crie uma!"}
@@ -118,7 +131,7 @@ export const Login = () => {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        <Copyright sx={{ mt: 2, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );

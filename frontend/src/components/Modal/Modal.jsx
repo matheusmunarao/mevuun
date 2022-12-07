@@ -6,9 +6,9 @@ import "./index.css";
 export const Modal = (props) => {
   const { className, modalRef } = props;
 
-  const [game, setGame] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [image, setImage] = useState("");
 
   const token = localStorage.getItem("token");
 
@@ -30,6 +30,7 @@ export const Modal = (props) => {
     const isGameCreated = await createGame({
       name: title,
       description: description,
+      image: image,
     });
 
     if (isGameCreated === 201) {
@@ -57,6 +58,14 @@ export const Modal = (props) => {
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
+        <div className="form-field">
+          <label>URL da Imagem</label>
+          <input
+            type="text"
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
           />
         </div>
         <button onClick={handleSubmit}>Adicionar</button>

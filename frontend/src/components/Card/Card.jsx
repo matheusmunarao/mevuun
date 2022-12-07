@@ -11,6 +11,7 @@ export const Card = (props) => {
       </div>
       <div className="card-content">
         <h3>{props.game}</h3>
+        <p>{props.description}</p>
       </div>
     </div>
   );

@@ -1,3 +1,19 @@
 .page-home {
   padding: 90px 50px;
+  position: relative;
+  height: 100vh;
+}
+
+.div-mais {
+  background-color: purple;
+  border-radius: 4px;
+  padding: 10px;
+  bottom: 25px;
+  right: 25px;
+  width: 50px;
+  position: absolute;
+}
+
+.show {
+  display: block !important;
 }

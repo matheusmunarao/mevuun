@@ -1,0 +1,30 @@
+.modal {
+  background-color: #000;
+  display: none;
+  position: fixed;
+  width: 50%;
+  height: 50%;
+  left: 25%;
+  top: 100px;
+  color: #fff;
+  border-radius: 25px;
+  padding: 50px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  border-radius: 5px;
+  color: #000;
+}
+
+button {
+  background-color: purple;
+}

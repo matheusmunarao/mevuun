@@ -41,7 +41,7 @@ export const SignUp = () => {
 
     if (signup === 201) {
       window.alert("Cadastrado com sucesso!");
-      window.location.href = "/login";
+      window.location.href = "/";
     } else {
       window.alert("Informações Incorretas! Preencha novamente.");
     }

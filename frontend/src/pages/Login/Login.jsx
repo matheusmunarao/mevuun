@@ -31,18 +31,22 @@ const loginUser = async (credentials) => {
 };
 
 export const Login = () => {
+  const [password, setPassword] = React.useState("");
+  const [email, setEmail] = React.useState("");
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
     const token = await loginUser({
-      email: data.get("email"),
-      password: data.get("password"),
+      email: email,
+      password: password,
     });
 
-    if (token) {
-      window.location.href = "/home";
-    } else {
+    if (token.statusCode === 401) {
       window.alert("Usuário inválido");
+    } else {
+      console.log(token.token);
+      localStorage.setItem("token", token.token);
+      window.location.href = "/home";
     }
   };
 

@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import FullStar from "../../assets/estrela-cheia.png";
+import EmptyStar from "../../assets/estrela.png";
 import Mais from "../../assets/mais.png";
 import Menos from "../../assets/menos.png";
 import { Card } from "../../components/Card/Card";
@@ -53,6 +55,7 @@ export const Home = () => {
               image={game.image}
               name={game.name}
               description={game.description}
+              isFavorited={game.liked === true ? FullStar : EmptyStar}
             />
           ))}
         </div>

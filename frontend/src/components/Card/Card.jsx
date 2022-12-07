@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import FullStar from "../../assets/estrela-cheia.png";
-import EmptyStar from "../../assets/estrela.png";
 import Trash from "../../assets/lata-de-lixo.png";
 import "./index.css";
 
@@ -26,29 +24,52 @@ export const Card = (props) => {
     await deleteGame(props.id);
   };
 
-  const favoriteGame = async (gameFav, id) => {
+  const favoriteGame = async (setFavorite, id) => {
     return fetch(`http://localhost:3000/api/v1/games/like/${id}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(gameFav),
+      body: JSON.stringify(setFavorite),
     }).then((data) => {
       return data.status;
     });
   };
 
-  const handleFavorite = async (event) => {
-    event.preventDefault();
-    setFavorite((previous) => !previous);
-    console.log(favorite);
-    await favoriteGame(
-      {
-        liked: favorite,
+  const unfavoriteGame = async (setFavorite, id) => {
+    return fetch(`http://localhost:3000/api/v1/games/unlike/${id}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
-      props.id
-    );
+      body: JSON.stringify(setFavorite),
+    }).then((data) => {
+      return data.status;
+    });
+  };
+
+  const handleToggleFavorite = async () => {
+    setFavorite((previous) => !previous);
+
+    console.log(favorite);
+
+    if (!favorite) {
+      await favoriteGame(
+        {
+          liked: true,
+        },
+        props.id
+      );
+    } else {
+      await unfavoriteGame(
+        {
+          liked: false,
+        },
+        props.id
+      );
+    }
   };
 
   return (
@@ -58,8 +79,8 @@ export const Card = (props) => {
         <button onClick={handleDelete} className="trash">
           <img src={Trash} alt="" />
         </button>
-        <button onClick={handleFavorite} className="star">
-          <img src={favorite ? FullStar : EmptyStar} alt="" />
+        <button onClick={handleToggleFavorite} className="star">
+          <img src={props.isFavorited} alt="" />
         </button>
       </div>
       <div className="card-content">

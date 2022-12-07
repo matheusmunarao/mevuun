@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "../../components/Card/Card";
+import { Copyright } from "../../components/Copyright/Copyright";
 import { Menu } from "../../components/Menu/Menu";
 import "./index.css";
 
@@ -25,22 +26,25 @@ export const Favorites = () => {
       .then((data) => {
         setData(data);
       });
-  }, []);
+  }, [data]);
+
+  console.log(data);
 
   return (
     <>
       <Menu />
-      <div className="page">
+      <div className="page-favorites">
         {data?.map((game) =>
           game.liked === true ? (
             <Card
-              game={game.id}
+              id={game._id}
               image={game.image}
               name={game.name}
               description={game.description}
             />
           ) : null
         )}
+        <Copyright />
       </div>
     </>
   );

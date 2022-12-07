@@ -9,30 +9,6 @@ export const Card = (props) => {
 
   const token = localStorage.getItem("token");
 
-  const favoriteGame = async (gameFav, id) => {
-    return fetch(`http://localhost:3000/api/v1/games/like/${id}`, {
-      method: "PATCH",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(gameFav),
-    }).then((data) => {
-      return data.status;
-    });
-  };
-
-  const handleFavorite = async (event) => {
-    event.preventDefault();
-    await favoriteGame(
-      {
-        liked: favorite,
-      },
-      props.id
-    );
-    setFavorite((previous) => !previous);
-  };
-
   const deleteGame = async (id) => {
     return fetch(`http://localhost:3000/api/v1/games/${id}`, {
       method: "DELETE",
@@ -50,6 +26,31 @@ export const Card = (props) => {
     await deleteGame(props.id);
   };
 
+  const favoriteGame = async (gameFav, id) => {
+    return fetch(`http://localhost:3000/api/v1/games/like/${id}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(gameFav),
+    }).then((data) => {
+      return data.status;
+    });
+  };
+
+  const handleFavorite = async (event) => {
+    event.preventDefault();
+    setFavorite((previous) => !previous);
+    console.log(favorite);
+    await favoriteGame(
+      {
+        liked: favorite,
+      },
+      props.id
+    );
+  };
+
   return (
     <div className="card-container">
       <div className="card-image">
@@ -62,7 +63,7 @@ export const Card = (props) => {
         </button>
       </div>
       <div className="card-content">
-        <h3>{props.game}</h3>
+        <h3>{props.name}</h3>
         <p>{props.description}</p>
       </div>
     </div>

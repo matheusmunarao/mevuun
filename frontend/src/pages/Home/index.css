@@ -19,7 +19,7 @@
 }
 
 .card-container {
-  width: 20%;
+  width: 100%;
   border: 1px solid #000;
   border-radius: 4px;
 }
@@ -30,6 +30,8 @@
 
 .card-image > img {
   width: 100%;
+  min-height: 145px;
+  max-height: 145px;
 }
 
 .card-image > .trash {
@@ -68,4 +70,13 @@
 
 .card-content {
   padding: 10px;
+}
+
+.container-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  gap: 30px;
 }

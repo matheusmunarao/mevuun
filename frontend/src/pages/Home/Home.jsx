@@ -1,14 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import Mais from "../../assets/mais.png";
+import Menos from "../../assets/menos.png";
 import { Card } from "../../components/Card/Card";
+import { Copyright } from "../../components/Copyright/Copyright";
 import { Menu } from "../../components/Menu/Menu";
 import { Modal } from "../../components/Modal/Modal";
 import "./index.css";
 
 export const Home = () => {
+  const modalRef = useRef(null);
   const [dropdown, setDropdown] = useState("");
   const [data, setData] = useState(null);
-  const modalRef = useRef(null);
 
   const toggleDropdown = () => {
     console.log(dropdown);
@@ -38,26 +40,27 @@ export const Home = () => {
       .then((data) => {
         setData(data);
       });
-  }, []);
-
-  console.log(data);
+  }, [data]);
 
   return (
     <>
       <Menu />
       <div className="page-home">
-        {data?.map((game) => (
-          <Card
-            key={game.id}
-            image={game.image}
-            name={game.name}
-            description={game.description}
-            id={game._id}
-          />
-        ))}
+        <div className="container-cards">
+          {data?.map((game) => (
+            <Card
+              id={game._id}
+              image={game.image}
+              name={game.name}
+              description={game.description}
+            />
+          ))}
+        </div>
+
         <button onClick={toggleDropdown} className="div-mais">
-          <img src={Mais} alt="" />
+          <img src={dropdown ? Menos : Mais} alt="" />
         </button>
+        <Copyright />
       </div>
       <Modal className={dropdown} modalRef={modalRef} />
     </>

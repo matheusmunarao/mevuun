@@ -105,11 +105,6 @@ export const Login = () => {
               ACESSAR
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Esqueceu sua senha?
-                </Link>
-              </Grid>
               <Grid item>
                 <Link href="/signup" variant="body2">
                   {"Não possui uma conta? Crie uma!"}

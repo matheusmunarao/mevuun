@@ -53,7 +53,9 @@ export const Modal = (props) => {
           />
         </div>
         <div className="form-field">
-          <label>Descrição</label>
+          <label>
+            Descrição <span>(Não exagere nos caractéres, por favor 😢)</span>
+          </label>
           <input
             type="text"
             value={description}
@@ -68,7 +70,9 @@ export const Modal = (props) => {
             onChange={(e) => setImage(e.target.value)}
           />
         </div>
-        <button onClick={handleSubmit}>Adicionar</button>
+        <div className="div-button">
+          <button onClick={handleSubmit}>Adicionar</button>
+        </div>
       </form>
     </div>
   );

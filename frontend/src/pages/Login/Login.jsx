@@ -17,7 +17,7 @@ import { Copyright } from "../../components/Copyright/Copyright";
 const theme = createTheme();
 
 const loginUser = async (credentials) => {
-  return fetch("http://localhost:3000/api/v1/auth/signin", {
+  return fetch("http://52.1.165.156:3000/api/v1/auth/signin", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -31,18 +31,22 @@ const loginUser = async (credentials) => {
 };
 
 export const Login = () => {
+  const [password, setPassword] = React.useState("");
+  const [email, setEmail] = React.useState("");
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
     const token = await loginUser({
-      email: data.get("email"),
-      password: data.get("password"),
+      email: email,
+      password: password,
     });
 
-    if (token) {
-      window.location.href = "/home";
-    } else {
+    if (token.statusCode === 401) {
       window.alert("Usuário inválido");
+    } else {
+      console.log(token.token);
+      localStorage.setItem("token", token.token);
+      window.location.href = "/home";
     }
   };
 
@@ -101,11 +105,6 @@ export const Login = () => {
               ACESSAR
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Esqueceu sua senha?
-                </Link>
-              </Grid>
               <Grid item>
                 <Link href="/signup" variant="body2">
                   {"Não possui uma conta? Crie uma!"}

@@ -1,0 +1,14 @@
+.page-favorites {
+  padding: 90px 50px;
+  position: relative;
+  min-height: 100vh;
+}
+
+.container-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  gap: 30px;
+}

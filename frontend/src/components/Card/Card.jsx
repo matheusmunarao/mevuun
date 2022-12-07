@@ -8,7 +8,7 @@ export const Card = (props) => {
   const token = localStorage.getItem("token");
 
   const deleteGame = async (id) => {
-    return fetch(`http://localhost:3000/api/v1/games/${id}`, {
+    return fetch(`http://52.1.165.156:3000/api/v1/games/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -25,7 +25,7 @@ export const Card = (props) => {
   };
 
   const favoriteGame = async (setFavorite, id) => {
-    return fetch(`http://localhost:3000/api/v1/games/like/${id}`, {
+    return fetch(`http://52.1.165.156:3000/api/v1/games/like/${id}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -38,7 +38,7 @@ export const Card = (props) => {
   };
 
   const unfavoriteGame = async (setFavorite, id) => {
-    return fetch(`http://localhost:3000/api/v1/games/unlike/${id}`, {
+    return fetch(`http://52.1.165.156:3000/api/v1/games/unlike/${id}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,

@@ -17,7 +17,7 @@ import { Copyright } from "../../components/Copyright/Copyright";
 const theme = createTheme();
 
 const loginUser = async (credentials) => {
-  return fetch("http://localhost:3000/api/v1/auth/signin", {
+  return fetch("http://52.1.165.156:3000/api/v1/auth/signin", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

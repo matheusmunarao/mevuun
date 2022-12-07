@@ -25,7 +25,7 @@ export const Home = () => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/v1/games", {
+    fetch("http://52.1.165.156:3000/api/v1/games", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

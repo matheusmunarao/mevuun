@@ -13,7 +13,7 @@ export const Modal = (props) => {
   const token = localStorage.getItem("token");
 
   const createGame = async (gameInfo) => {
-    return fetch("http://localhost:3000/api/v1/games", {
+    return fetch("http://52.1.165.156:3000/api/v1/games", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

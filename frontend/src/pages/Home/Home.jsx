@@ -60,8 +60,8 @@ export const Home = () => {
         <button onClick={toggleDropdown} className="div-mais">
           <img src={dropdown ? Menos : Mais} alt="" />
         </button>
-        <Copyright />
       </div>
+      <Copyright />
       <Modal className={dropdown} modalRef={modalRef} />
     </>
   );

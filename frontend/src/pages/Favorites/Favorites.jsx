@@ -34,18 +34,20 @@ export const Favorites = () => {
     <>
       <Menu />
       <div className="page-favorites">
-        {data?.map((game) =>
-          game.liked === true ? (
-            <Card
-              id={game._id}
-              image={game.image}
-              name={game.name}
-              description={game.description}
-            />
-          ) : null
-        )}
-        <Copyright />
+        <div className="container-cards">
+          {data?.map((game) =>
+            game.liked === true ? (
+              <Card
+                id={game._id}
+                image={game.image}
+                name={game.name}
+                description={game.description}
+              />
+            ) : null
+          )}
+        </div>
       </div>
+      <Copyright />
     </>
   );
 };

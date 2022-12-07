@@ -48,10 +48,11 @@ export const Home = () => {
       <div className="page-home">
         {data?.map((game) => (
           <Card
-            game={game.id}
+            key={game.id}
             image={game.image}
             name={game.name}
             description={game.description}
+            id={game._id}
           />
         ))}
         <button onClick={toggleDropdown} className="div-mais">

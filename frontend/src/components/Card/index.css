@@ -12,14 +12,38 @@
   width: 100%;
 }
 
-.card-image > button {
+.card-image > .trash {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border-radius: 100%;
+  background-color: #fff;
+  width: 30px;
+  padding: 2px;
+  box-shadow: 1px 0px 0px #0f0f0f;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-image > .star {
   position: absolute;
   bottom: 5px;
   right: 5px;
   border-radius: 100%;
   background-color: #fff;
+  box-shadow: 1px 0px 0px #0f0f0f;
   width: 30px;
+  padding: 2px;
   color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-image > button > img {
+  width: 30px;
 }
 
 .card-content {

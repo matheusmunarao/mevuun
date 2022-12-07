@@ -15,7 +15,6 @@ export const Home = () => {
   const [data, setData] = useState(null);
 
   const toggleDropdown = () => {
-    console.log(dropdown);
     if (dropdown === "show") {
       setDropdown("");
     } else {

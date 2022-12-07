@@ -3,10 +3,13 @@
   position: fixed;
   top: 0;
   z-index: 1;
-  background-color: #120390;
+  background-color: #fff;
   width: 100%;
   color: #fff;
   height: max-content;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+  color: #000;
+  font-weight: bold;
 }
 
 .menu-ul {

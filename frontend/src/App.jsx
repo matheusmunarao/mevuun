@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./index.css";
 import { Favorites } from "./pages/Favorites/Favorites";
 import { Home } from "./pages/Home/Home";
 import { Login } from "./pages/Login/Login";

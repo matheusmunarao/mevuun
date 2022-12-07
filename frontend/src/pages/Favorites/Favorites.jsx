@@ -30,8 +30,6 @@ export const Favorites = () => {
       });
   }, [data]);
 
-  console.log(data);
-
   return (
     <>
       <Menu />

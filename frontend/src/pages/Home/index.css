@@ -5,71 +5,19 @@
 }
 
 .div-mais {
-  background-color: purple;
+  background-color: #fff;
   border-radius: 4px;
   padding: 10px;
   bottom: 25px;
   right: 25px;
   width: 50px;
   position: absolute;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
 .show {
   display: block !important;
-}
-
-.card-container {
-  width: 100%;
-  border: 1px solid #000;
-  border-radius: 4px;
-}
-
-.card-image {
-  position: relative;
-}
-
-.card-image > img {
-  width: 100%;
-  min-height: 145px;
-  max-height: 145px;
-}
-
-.card-image > .trash {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  border-radius: 100%;
-  background-color: #fff;
-  width: 30px;
-  padding: 2px;
-  box-shadow: 1px 0px 0px #0f0f0f;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card-image > .star {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-  border-radius: 100%;
-  background-color: #fff;
-  box-shadow: 1px 0px 0px #0f0f0f;
-  width: 30px;
-  padding: 2px;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card-image > button > img {
-  width: 30px;
-}
-
-.card-content {
-  padding: 10px;
 }
 
 .container-cards {

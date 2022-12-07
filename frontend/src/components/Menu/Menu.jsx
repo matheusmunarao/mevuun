@@ -1,6 +1,6 @@
 import React from "react";
 import Home from "../../assets/botao-de-inicio.png";
-import Favoritos from "../../assets/estrela.png";
+import Favoritos from "../../assets/estrela-cheia.png";
 import Conta from "../../assets/perfil-de-usuario.png";
 import "./index.css";
 
